@@ -3,339 +3,577 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#F39A68" />
-  <meta name="description" content="PlearnJit แอปดูแลสุขภาพกาย ใจ และสมองสำหรับผู้สูงวัย" />
-  <title>PlearnJit – เพลินจิต</title>
-  <link rel="manifest" href="manifest.json" />
-  <link rel="icon" href="icon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="PlearnJit – เพลินจิต แอปเพื่อนใจดีสำหรับผู้สูงวัย สนุกทุกวัน ใจดี สมองดี" />
+  <meta name="theme-color" content="#FFF8F0" />
+  <title>PlearnJit – เพลินจิต | สนุกทุกวัน ใจดี สมองดี</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #fff8f0;
+      --paper: #fffdf9;
+      --ink: #4d4650;
+      --muted: #746d77;
+      --pink: #f7b8c8;
+      --pink-strong: #e880a0;
+      --peach: #ffc7a8;
+      --orange: #f6a66c;
+      --blue: #b9ddf7;
+      --blue-strong: #6aaed6;
+      --green: #c8e7cf;
+      --green-strong: #69a879;
+      --yellow: #ffe6a6;
+      --purple: #d8c8ef;
+      --purple-strong: #957ab7;
+      --white: #ffffff;
+      --shadow: 0 18px 45px rgba(104, 86, 94, 0.12);
+      --shadow-soft: 0 10px 30px rgba(104, 86, 94, 0.08);
+      --radius-lg: 32px;
+      --radius-md: 24px;
+      --radius-sm: 18px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Noto Sans Thai", system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 5% 3%, rgba(247,184,200,.34), transparent 24%),
+        radial-gradient(circle at 95% 12%, rgba(185,221,247,.38), transparent 28%),
+        var(--cream);
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, input { font: inherit; }
+
+    .container { width: min(calc(100% - 32px), var(--max)); margin-inline: auto; }
+    .section { padding: 88px 0; position: relative; }
+    .section.compact { padding: 66px 0; }
+
+    .skip-link {
+      position: absolute; left: -999px; top: 12px;
+      background: var(--ink); color: white; padding: 10px 16px; border-radius: 12px; z-index: 999;
+    }
+    .skip-link:focus { left: 12px; }
+
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(255,248,240,.86);
+      border-bottom: 1px solid rgba(77,70,80,.08);
+    }
+    .nav-inner {
+      min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 12px; font-weight: 800; }
+    .brand-mark {
+      width: 48px; height: 48px; border-radius: 18px;
+      background: linear-gradient(135deg, var(--pink), var(--peach));
+      display: grid; place-items: center; font-size: 25px; box-shadow: var(--shadow-soft);
+      border: 3px solid rgba(255,255,255,.8);
+    }
+    .brand-name { font-family: "Mali", sans-serif; font-size: 1.22rem; line-height: 1.1; }
+    .brand-name small { display: block; font-family: "Noto Sans Thai"; color: var(--muted); font-size: .72rem; font-weight: 600; margin-top: 4px; }
+
+    .nav-links { display: flex; align-items: center; gap: 26px; font-weight: 700; color: #625b65; }
+    .nav-links a { padding: 8px 0; border-bottom: 3px solid transparent; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--pink-strong); border-color: var(--pink); }
+    .nav-cta { background: var(--ink); color: white !important; border: 0 !important; padding: 12px 20px !important; border-radius: 999px; }
+    .menu-btn { display: none; border: 0; background: var(--white); width: 48px; height: 48px; border-radius: 16px; font-size: 23px; box-shadow: var(--shadow-soft); }
+
+    .hero { padding: 72px 0 94px; min-height: 720px; display: flex; align-items: center; }
+    .hero-grid { display: grid; grid-template-columns: 1.06fr .94fr; gap: 54px; align-items: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 9px 15px; border-radius: 999px;
+      background: rgba(255,255,255,.75); border: 1px solid rgba(77,70,80,.08);
+      font-weight: 700; color: #675f68; box-shadow: var(--shadow-soft);
+    }
+    h1, h2, h3 { font-family: "Mali", sans-serif; margin-top: 0; line-height: 1.35; }
+    h1 { font-size: clamp(2.65rem, 6vw, 5.25rem); margin: 22px 0 18px; letter-spacing: -.045em; }
+    .gradient-text {
+      background: linear-gradient(90deg, #e67d9e, #ee9c65, #8f7ab7);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero-copy { font-size: 1.17rem; color: var(--muted); max-width: 650px; margin: 0 0 28px; }
+    .hero-quote {
+      font-family: "Mali", sans-serif; font-weight: 700; font-size: 1.2rem;
+      color: #7c6170; background: linear-gradient(90deg, rgba(247,184,200,.38), rgba(255,230,166,.4));
+      display: inline-block; padding: 13px 18px; border-radius: 18px; margin-bottom: 28px;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; }
+    .btn {
+      min-height: 54px; padding: 0 23px; border-radius: 17px; border: 0; cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      font-weight: 800; transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: linear-gradient(135deg, var(--pink-strong), var(--orange)); color: white; box-shadow: 0 12px 24px rgba(232,128,160,.28); }
+    .btn-light { background: rgba(255,255,255,.88); color: var(--ink); box-shadow: var(--shadow-soft); border: 1px solid rgba(77,70,80,.08); }
+
+    .trust-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+    .trust-chip { padding: 8px 13px; border-radius: 999px; background: rgba(255,255,255,.62); font-size: .9rem; font-weight: 700; color: #6c6570; }
+
+    .phone-wrap { position: relative; display: grid; place-items: center; min-height: 570px; }
+    .blob { position: absolute; border-radius: 50%; filter: blur(.3px); }
+    .blob.one { width: 460px; height: 460px; background: linear-gradient(135deg, var(--blue), var(--purple)); opacity: .58; }
+    .blob.two { width: 185px; height: 185px; background: var(--yellow); top: 15px; right: 0; opacity: .7; }
+    .blob.three { width: 150px; height: 150px; background: var(--pink); bottom: 15px; left: 0; opacity: .66; }
+
+    .phone {
+      width: min(360px, 92vw); min-height: 655px; background: var(--paper); border: 10px solid #514a52;
+      border-radius: 48px; padding: 24px 18px; position: relative; z-index: 2;
+      box-shadow: 0 35px 70px rgba(77,70,80,.25); overflow: hidden;
+    }
+    .phone::before { content: ""; width: 112px; height: 24px; background: #514a52; border-radius: 0 0 16px 16px; position: absolute; left: 50%; top: 0; transform: translateX(-50%); }
+    .phone-top { display: flex; justify-content: space-between; align-items: center; margin: 10px 4px 18px; font-size: .82rem; font-weight: 700; }
+    .hello-card { background: linear-gradient(135deg, #ffd2dc, #ffe1bd); border-radius: 24px; padding: 20px; }
+    .hello-card strong { font-family: "Mali"; font-size: 1.32rem; }
+    .hello-card p { margin: 4px 0 0; font-size: .93rem; }
+    .progress { margin-top: 14px; background: rgba(255,255,255,.7); height: 10px; border-radius: 99px; overflow: hidden; }
+    .progress span { display: block; width: 64%; height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--pink-strong), var(--orange)); }
+    .phone-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px; }
+    .mini-card { min-height: 130px; border-radius: 22px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; font-weight: 800; }
+    .mini-card span { font-size: 1.85rem; }
+    .mini-card small { display: block; color: #665f68; font-weight: 600; margin-top: 3px; }
+    .mini-card.pink { background: #ffd5df; }
+    .mini-card.blue { background: #d6ecfa; }
+    .mini-card.green { background: #dcefe0; }
+    .mini-card.yellow { background: #ffedbc; }
+    .voice-btn { margin-top: 15px; width: 100%; border: 0; background: #ece3f7; color: #655875; border-radius: 18px; padding: 14px; font-weight: 800; cursor: pointer; }
+
+    .float-note {
+      position: absolute; z-index: 3; background: rgba(255,255,255,.95); border-radius: 18px;
+      padding: 12px 15px; box-shadow: var(--shadow); font-weight: 800; border: 1px solid rgba(77,70,80,.06);
+    }
+    .float-note.a { top: 80px; left: -12px; transform: rotate(-4deg); }
+    .float-note.b { right: -12px; bottom: 88px; transform: rotate(3deg); }
+
+    .section-head { max-width: 760px; margin: 0 auto 42px; text-align: center; }
+    .kicker { font-weight: 800; color: var(--pink-strong); letter-spacing: .04em; }
+    h2 { font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 14px; }
+    .section-head p { color: var(--muted); font-size: 1.08rem; margin: 0; }
+
+    .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .problem-card {
+      background: rgba(255,255,255,.78); border: 1px solid rgba(77,70,80,.07);
+      border-radius: var(--radius-md); padding: 28px; box-shadow: var(--shadow-soft);
+      display: grid; grid-template-columns: 54px 1fr; gap: 16px; align-items: start;
+    }
+    .problem-icon { width: 54px; height: 54px; border-radius: 18px; display: grid; place-items: center; font-size: 25px; background: #fff1e8; }
+    .problem-card h3 { font-size: 1.15rem; margin-bottom: 7px; }
+    .problem-card p { margin: 0; color: var(--muted); }
+
+    .solution-banner {
+      background: linear-gradient(135deg, rgba(247,184,200,.72), rgba(185,221,247,.68), rgba(200,231,207,.72));
+      border-radius: var(--radius-lg); padding: 46px; box-shadow: var(--shadow); position: relative; overflow: hidden;
+    }
+    .solution-banner::after { content: "♡"; position: absolute; right: 36px; top: 8px; font-size: 130px; color: rgba(255,255,255,.44); transform: rotate(10deg); }
+    .solution-banner h2 { max-width: 760px; margin-bottom: 10px; }
+    .solution-banner p { max-width: 780px; margin: 0; font-size: 1.12rem; color: #615763; }
+
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .feature-card {
+      border-radius: var(--radius-md); padding: 28px; min-height: 310px; position: relative; overflow: hidden;
+      box-shadow: var(--shadow-soft); border: 1px solid rgba(77,70,80,.06); transition: transform .25s ease;
+    }
+    .feature-card:hover { transform: translateY(-5px); }
+    .feature-card .num { font-family: "Mali"; font-size: .9rem; font-weight: 800; opacity: .62; }
+    .feature-icon { width: 68px; height: 68px; border-radius: 23px; display: grid; place-items: center; font-size: 34px; background: rgba(255,255,255,.7); margin: 15px 0 20px; }
+    .feature-card h3 { font-size: 1.4rem; margin-bottom: 8px; }
+    .feature-card p { color: #68616b; margin: 0 0 14px; }
+    .feature-card ul { margin: 0; padding-left: 20px; color: #6c6570; }
+    .feature-card li { margin: 5px 0; }
+    .feature-card.pink { background: #ffe0e8; }
+    .feature-card.blue { background: #dff1fc; }
+    .feature-card.green { background: #e0f1e4; }
+    .feature-card.yellow { background: #fff0c7; }
+    .feature-card.purple { background: #ebe2f6; }
+    .feature-card.peach { background: #ffe3d2; }
+
+    .demo-shell {
+      display: grid; grid-template-columns: .9fr 1.1fr; gap: 36px; align-items: stretch;
+      background: rgba(255,255,255,.75); padding: 28px; border-radius: var(--radius-lg); box-shadow: var(--shadow);
+    }
+    .demo-info { padding: 22px; display: flex; flex-direction: column; justify-content: center; }
+    .demo-info h2 { margin-bottom: 12px; }
+    .demo-info p { color: var(--muted); }
+    .demo-bullets { display: grid; gap: 12px; margin: 16px 0 24px; }
+    .demo-bullets div { display: flex; gap: 11px; align-items: center; font-weight: 700; }
+    .tick { width: 29px; height: 29px; border-radius: 50%; background: var(--green); display: grid; place-items: center; flex: 0 0 auto; }
+
+    .mood-demo { background: linear-gradient(180deg, #fff8fa, #fffdfa); border-radius: 28px; padding: 28px; border: 1px solid rgba(77,70,80,.08); }
+    .mood-demo h3 { font-size: 1.4rem; margin-bottom: 6px; }
+    .mood-demo > p { margin-top: 0; color: var(--muted); }
+    .mood-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
+    .mood-btn { min-height: 88px; border: 2px solid transparent; border-radius: 20px; background: white; cursor: pointer; font-weight: 800; font-size: 1.02rem; transition: .2s; }
+    .mood-btn span { display: block; font-size: 1.9rem; }
+    .mood-btn:hover, .mood-btn.active { border-color: var(--pink-strong); transform: translateY(-2px); box-shadow: var(--shadow-soft); }
+    .mood-result { margin-top: 16px; border-radius: 18px; padding: 16px; background: #f7eefc; color: #655875; min-height: 62px; font-weight: 700; }
+
+    .principles { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+    .principle { background: rgba(255,255,255,.78); padding: 23px 18px; border-radius: 22px; text-align: center; box-shadow: var(--shadow-soft); }
+    .principle span { display: grid; place-items: center; width: 58px; height: 58px; margin: 0 auto 13px; border-radius: 20px; background: var(--yellow); font-size: 28px; }
+    .principle strong { display: block; font-family: "Mali"; }
+    .principle small { color: var(--muted); }
+
+    .innovation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; align-items: stretch; }
+    .innovation-card { padding: 34px; border-radius: var(--radius-lg); box-shadow: var(--shadow-soft); }
+    .innovation-card.family { background: linear-gradient(145deg, #ffe0e8, #fff1c9); }
+    .innovation-card.all { background: linear-gradient(145deg, #dff1fc, #e4f2e6); }
+    .innovation-card h3 { font-size: 1.55rem; }
+    .innovation-card p { color: #67606a; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 18px; }
+    .tag { background: rgba(255,255,255,.76); padding: 8px 12px; border-radius: 999px; font-weight: 700; font-size: .92rem; }
+
+    .outcomes { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+    .outcome { background: white; border-radius: 22px; padding: 24px 18px; text-align: center; box-shadow: var(--shadow-soft); }
+    .outcome b { display: block; font-family: "Mali"; font-size: 2rem; margin-bottom: 4px; }
+    .outcome p { margin: 0; color: var(--muted); font-size: .94rem; }
+
+    .audience-wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+    .audience-chip { background: rgba(255,255,255,.85); border-radius: 18px; padding: 15px 18px; font-weight: 800; box-shadow: var(--shadow-soft); }
+
+    .cta-box {
+      background: #4f4852; color: white; border-radius: 38px; padding: 54px; display: grid; grid-template-columns: 1fr auto; gap: 30px; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-box::before { content: ""; position: absolute; width: 260px; height: 260px; border-radius: 50%; background: rgba(247,184,200,.24); right: -70px; top: -90px; }
+    .cta-box h2 { margin: 0 0 8px; font-size: clamp(1.8rem, 4vw, 3rem); }
+    .cta-box p { margin: 0; color: rgba(255,255,255,.76); max-width: 700px; }
+    .cta-box .btn { position: relative; z-index: 1; background: var(--yellow); color: var(--ink); white-space: nowrap; }
+
+    footer { padding: 38px 0 52px; color: var(--muted); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 18px; border-top: 1px solid rgba(77,70,80,.1); padding-top: 28px; }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 980px) {
+      .nav-links { position: fixed; inset: 79px 16px auto; background: rgba(255,253,249,.98); border-radius: 24px; box-shadow: var(--shadow); padding: 24px; flex-direction: column; align-items: stretch; display: none; }
+      .nav-links.open { display: flex; }
+      .menu-btn { display: block; }
+      .hero-grid, .demo-shell { grid-template-columns: 1fr; }
+      .hero { padding-top: 48px; }
+      .hero-copy { max-width: 100%; }
+      .phone-wrap { margin-top: 10px; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .principles { grid-template-columns: repeat(3, 1fr); }
+      .outcomes { grid-template-columns: repeat(3, 1fr); }
+      .cta-box { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      .container { width: min(calc(100% - 22px), var(--max)); }
+      .section { padding: 64px 0; }
+      .hero { min-height: auto; padding-bottom: 66px; }
+      h1 { font-size: 2.7rem; }
+      .hero-copy { font-size: 1.04rem; }
+      .hero-actions { flex-direction: column; }
+      .btn { width: 100%; }
+      .phone { min-height: 620px; }
+      .float-note { font-size: .82rem; }
+      .float-note.a { left: 2px; }
+      .float-note.b { right: 2px; }
+      .problem-grid, .features-grid, .innovation-grid { grid-template-columns: 1fr; }
+      .problem-card { grid-template-columns: 48px 1fr; padding: 22px; }
+      .solution-banner, .cta-box { padding: 32px 24px; border-radius: 28px; }
+      .solution-banner::after { display: none; }
+      .mood-options { grid-template-columns: 1fr; }
+      .principles { grid-template-columns: 1fr 1fr; }
+      .outcomes { grid-template-columns: 1fr 1fr; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
 </head>
 <body>
-  <a class="skip-link" href="#mainContent">ข้ามไปยังเนื้อหาหลัก</a>
+  <a class="skip-link" href="#main">ข้ามไปยังเนื้อหาหลัก</a>
 
-  <header class="topbar">
-    <button class="brand" type="button" data-go="home" aria-label="กลับหน้าหลัก">
-      <span class="brand-mark" aria-hidden="true">☺</span>
-      <span>
-        <strong>PlearnJit</strong>
-        <small>เพลินจิต</small>
-      </span>
-    </button>
-
-    <div class="top-actions">
-      <button id="speakPageBtn" class="icon-button" type="button" aria-label="อ่านหน้านี้ให้ฟัง">
-        🔊 <span>อ่านให้ฟัง</span>
-      </button>
-      <button id="fontBtn" class="icon-button" type="button" aria-label="ปรับขนาดตัวอักษร">
-        ก+ <span>ตัวใหญ่</span>
-      </button>
+  <nav aria-label="เมนูหลัก">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="PlearnJit หน้าแรก">
+        <span class="brand-mark" aria-hidden="true">🌼</span>
+        <span class="brand-name">PlearnJit <small>เพลินจิต</small></span>
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-label="เปิดเมนู" aria-expanded="false">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">แนวคิด</a>
+        <a href="#features">ฟีเจอร์</a>
+        <a href="#innovation">จุดเด่น</a>
+        <a href="#outcomes">ผลลัพธ์</a>
+        <a class="nav-cta" href="#demo">ลองเดโม</a>
+      </div>
     </div>
-  </header>
+  </nav>
 
-  <main id="mainContent" tabindex="-1">
-    <!-- HOME -->
-    <section class="screen active" id="screen-home" data-title="หน้าหลัก">
-      <div class="hero-card">
-        <div class="mascot" aria-label="น้องเพลิน มาสคอตของแอป">
-          <div class="mascot-face">
-            <span class="glasses">◉ ◉</span>
-            <span class="smile">⌣</span>
+  <main id="main">
+    <header class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="hero-content reveal">
+          <span class="eyebrow">🧠 Healthy Longevity Tech · Preventing</span>
+          <h1><span class="gradient-text">PlearnJit</span><br>เพลินจิต</h1>
+          <p class="hero-copy">แอปเพื่อนใจดีสำหรับผู้สูงวัย ที่เปลี่ยนการดูแลสุขภาพสมองให้เป็นกิจกรรมสนุก ง่าย และอบอุ่นในทุกวัน ผ่านการฝึกความคิด เช็กอารมณ์ ดูแลสุขภาพ และเชื่อมต่อกับครอบครัว</p>
+          <div class="hero-quote">“สนุกทุกวัน ใจดี สมองดี”</div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#features">ดูฟีเจอร์หลัก <span aria-hidden="true">→</span></a>
+            <button class="btn btn-light" id="speakIntro" type="button">🔊 ฟังคำแนะนำ</button>
           </div>
-          <div class="mascot-body">💛</div>
+          <div class="trust-row" aria-label="จุดเด่นการออกแบบ">
+            <span class="trust-chip">ปุ่มใหญ่ กดง่าย</span>
+            <span class="trust-chip">อ่านออกเสียงภาษาไทย</span>
+            <span class="trust-chip">ไม่ตัดสิน ไม่กดดัน</span>
+          </div>
         </div>
 
-        <div class="hero-copy">
-          <p id="dateText" class="date-text"></p>
-          <h1 id="greetingText">สวัสดีค่ะ คุณยายอร 🌤️</h1>
-          <p>วันนี้น้องเพลินมีกิจกรรมง่าย ๆ ให้ทำด้วยกันค่ะ</p>
-          <div class="daily-progress" aria-label="ความคืบหน้ากิจกรรมวันนี้">
-            <div class="progress-label">
-              <span>กิจกรรมวันนี้</span>
-              <strong id="progressText">0 / 3</strong>
+        <div class="phone-wrap reveal" aria-label="ตัวอย่างหน้าจอแอปพลิเคชัน">
+          <div class="blob one"></div><div class="blob two"></div><div class="blob three"></div>
+          <div class="float-note a">💗 วันนี้ใจเป็นอย่างไรบ้าง</div>
+          <div class="float-note b">👨‍👩‍👧 โทรหาครอบครัว 1 แตะ</div>
+          <div class="phone">
+            <div class="phone-top"><span>09:41</span><span>●●● 100%</span></div>
+            <div class="hello-card">
+              <strong>สวัสดีค่ะ คุณยาย 🌷</strong>
+              <p>วันนี้เรามีกิจกรรมเบา ๆ 3 อย่าง</p>
+              <div class="progress" aria-label="ทำกิจกรรมแล้ว 64 เปอร์เซ็นต์"><span></span></div>
             </div>
-            <div class="progress-track" aria-hidden="true">
-              <div id="progressBar" class="progress-bar"></div>
+            <div class="phone-grid">
+              <div class="mini-card pink"><span>🧩</span><div>เล่นเพลิน<small>ฝึกความจำแบบสนุก</small></div></div>
+              <div class="mini-card blue"><span>😊</span><div>เช็กใจ<small>บอกความรู้สึกวันนี้</small></div></div>
+              <div class="mini-card green"><span>💧</span><div>สุขภาพวันนี้<small>น้ำ ยา การนอน</small></div></div>
+              <div class="mini-card yellow"><span>☎️</span><div>คุยเพลิน<small>หาคนที่เรารัก</small></div></div>
             </div>
+            <button class="voice-btn" type="button" id="phoneSpeak">🔊 อ่านหน้านี้ให้ฟัง</button>
           </div>
         </div>
       </div>
+    </header>
 
-      <section class="quick-check card" aria-labelledby="moodTitle">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">เช็กใจสักนิด</p>
-            <h2 id="moodTitle">วันนี้รู้สึกอย่างไรบ้างคะ?</h2>
-          </div>
-          <button class="soft-button" type="button" data-go="mood">เลือกอารมณ์</button>
+    <section class="section compact" id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">ปัญหาที่ต้องการแก้</span>
+          <h2>ผู้สูงวัยรู้ว่าควรดูแลตัวเอง<br>แต่เทคโนโลยียังไม่เป็นมิตรพอ</h2>
+          <p>เพลินจิตเริ่มต้นจากการเข้าใจอุปสรรคเล็ก ๆ ที่ทำให้การดูแลสุขภาพไม่ต่อเนื่อง</p>
         </div>
-        <p id="moodSummary" class="muted">ยังไม่ได้บันทึกอารมณ์วันนี้</p>
-      </section>
-
-      <section class="menu-grid" aria-label="เมนูหลัก">
-        <button class="menu-card peach" type="button" data-go="play">
-          <span class="menu-icon">🧠</span>
-          <strong>เล่นเพลิน</strong>
-          <span>ฝึกสมองแบบสบาย ๆ</span>
-        </button>
-
-        <button class="menu-card mint" type="button" data-go="move">
-          <span class="menu-icon">🚶</span>
-          <strong>ขยับเพลิน</strong>
-          <span>ยืดเส้นและเคลื่อนไหว</span>
-        </button>
-
-        <button class="menu-card yellow" type="button" data-go="talk">
-          <span class="menu-icon">💬</span>
-          <strong>คุยเพลิน</strong>
-          <span>โทรหาและฟังเสียงคนที่รัก</span>
-        </button>
-
-        <button class="menu-card rose" type="button" data-go="health">
-          <span class="menu-icon">❤️</span>
-          <strong>สุขภาพวันนี้</strong>
-          <span>บันทึกการนอน น้ำ และยา</span>
-        </button>
-      </section>
-
-      <section class="today-card card" aria-labelledby="todayTitle">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">ทำทีละนิดก็เก่งแล้ว</p>
-            <h2 id="todayTitle">กิจกรรมของวันนี้</h2>
-          </div>
-          <button class="soft-button" type="button" data-go="garden">ดูสวนของฉัน</button>
-        </div>
-        <div id="taskList" class="task-list"></div>
-      </section>
-
-      <button id="callFamilyBtn" class="emergency-button" type="button">
-        📞 โทรหาครอบครัว
-      </button>
-    </section>
-
-    <!-- MOOD -->
-    <section class="screen" id="screen-mood" data-title="บันทึกอารมณ์">
-      <div class="page-heading">
-        <button class="back-button" type="button" data-go="home">← กลับ</button>
-        <div>
-          <p class="eyebrow">น้องเพลินอยากฟัง</p>
-          <h1>วันนี้รู้สึกอย่างไรบ้างคะ?</h1>
-          <p>เลือกคำตอบที่ใกล้กับความรู้สึกที่สุด ไม่มีคำตอบผิดค่ะ</p>
-        </div>
-      </div>
-      <div id="moodGrid" class="mood-grid"></div>
-      <div id="moodAdvice" class="advice-card hidden" aria-live="polite"></div>
-    </section>
-
-    <!-- PLAY -->
-    <section class="screen" id="screen-play" data-title="เล่นเพลิน">
-      <div class="page-heading">
-        <button class="back-button" type="button" data-go="home">← กลับ</button>
-        <div>
-          <p class="eyebrow">เล่นเพลิน</p>
-          <h1>กิจกรรมฝึกสมอง</h1>
-          <p>ไม่มีจับเวลา เล่นช้า ๆ ได้ตามสบายค่ะ</p>
-        </div>
-      </div>
-
-      <div class="activity-grid">
-        <button class="activity-card" type="button" data-activity="memory">
-          <span>🖼️</span>
-          <strong>ทายภาพความทรงจำ</strong>
-          <small>นึกถึงเรื่องราวดี ๆ จากภาพครอบครัว</small>
-        </button>
-        <button class="activity-card" type="button" data-activity="sequence">
-          <span>🔢</span>
-          <strong>เรียงลำดับตัวเลข</strong>
-          <small>กิจกรรมสั้น ๆ ช่วยฝึกสมาธิ</small>
-        </button>
-        <button class="activity-card" type="button" data-activity="shopping">
-          <span>🛒</span>
-          <strong>ไปตลาดกัน</strong>
-          <small>เลือกของใช้จากรายการง่าย ๆ</small>
-        </button>
-      </div>
-
-      <div id="activityStage" class="activity-stage card">
-        <div class="empty-state">
-          <span>🌼</span>
-          <h2>เลือกกิจกรรมที่อยากเล่นได้เลยค่ะ</h2>
-          <p>ทำเสร็จแล้วดอกไม้ในสวนจะค่อย ๆ บาน</p>
+        <div class="problem-grid">
+          <article class="problem-card reveal"><div class="problem-icon">🔍</div><div><h3>ใช้งานยาก มองไม่ชัด</h3><p>ตัวอักษรและปุ่มขนาดเล็ก เมนูซับซ้อน ทำให้ผู้สูงอายุไม่มั่นใจในการใช้งาน</p></div></article>
+          <article class="problem-card reveal"><div class="problem-icon">📝</div><div><h3>เหมือนกำลังทำข้อสอบ</h3><p>กิจกรรมที่เป็นทางการ มีเวลาและคะแนน อาจสร้างความกังวลมากกว่าความสนุก</p></div></article>
+          <article class="problem-card reveal"><div class="problem-icon">📅</div><div><h3>ทำได้ไม่นานก็หยุด</h3><p>เมื่อกิจกรรมไม่สอดคล้องกับชีวิตจริง ผู้สูงอายุจึงขาดแรงจูงใจในการกลับมาใช้งาน</p></div></article>
+          <article class="problem-card reveal"><div class="problem-icon">🏡</div><div><h3>ครอบครัวมองไม่เห็นความเปลี่ยนแปลง</h3><p>ลูกหลานไม่ทราบกิจวัตร อารมณ์ หรือสัญญาณเปลี่ยนแปลงเล็ก ๆ ที่เกิดขึ้นทุกวัน</p></div></article>
         </div>
       </div>
     </section>
 
-    <!-- MOVE -->
-    <section class="screen" id="screen-move" data-title="ขยับเพลิน">
-      <div class="page-heading">
-        <button class="back-button" type="button" data-go="home">← กลับ</button>
-        <div>
-          <p class="eyebrow">ขยับเพลิน</p>
-          <h1>ยืดเส้นเบา ๆ 3 นาที</h1>
-          <p>ทำเท่าที่ไหว หากเวียนหัวหรือเจ็บ ให้หยุดพักทันทีค่ะ</p>
-        </div>
-      </div>
-
-      <div class="exercise-layout">
-        <div class="exercise-visual card">
-          <div id="exerciseEmoji" class="exercise-emoji">🙆</div>
-          <h2 id="exerciseName">ยกแขนขึ้นช้า ๆ</h2>
-          <p id="exerciseInstruction">นั่งหลังตรง ยกแขนทั้งสองข้างขึ้นเหนือศีรษะ แล้วค่อย ๆ ลดลง</p>
-          <div class="timer" aria-live="polite">
-            <span id="exerciseTimer">00:30</span>
-          </div>
-          <div class="button-row">
-            <button id="startExerciseBtn" class="primary-button" type="button">เริ่มขยับ</button>
-            <button id="nextExerciseBtn" class="secondary-button" type="button">ท่าถัดไป</button>
-          </div>
-        </div>
-
-        <div class="exercise-list card">
-          <h2>ท่าของวันนี้</h2>
-          <ol id="exerciseList"></ol>
+    <section class="section compact">
+      <div class="container">
+        <div class="solution-banner reveal">
+          <span class="kicker">แนวคิดของโซลูชัน</span>
+          <h2>เปลี่ยน “การดูแลสุขภาพ” ให้เป็นช่วงเวลาเพลิน ๆ ในชีวิตประจำวัน</h2>
+          <p>PlearnJit ใช้ภาษาที่อบอุ่น ไม่ตัดสิน และไม่ทำให้ผู้สูงอายุรู้สึกว่ากำลังถูกตรวจโรค พร้อมนำภาพ เสียง เพลง และเรื่องราวของครอบครัวมาสร้างกิจกรรมที่คุ้นเคยและมีความหมาย</p>
         </div>
       </div>
     </section>
 
-    <!-- TALK -->
-    <section class="screen" id="screen-talk" data-title="คุยเพลิน">
-      <div class="page-heading">
-        <button class="back-button" type="button" data-go="home">← กลับ</button>
-        <div>
-          <p class="eyebrow">คุยเพลิน</p>
-          <h1>อยากคุยกับใครคะ?</h1>
-          <p>แตะรูปหนึ่งครั้งเพื่อโทรหา หรือฟังข้อความเสียงจากครอบครัว</p>
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">ฟีเจอร์หลัก</span>
+          <h2>ดูแลครบทั้งสมอง กาย ใจ<br>และความสัมพันธ์</h2>
+          <p>แต่ละกิจกรรมใช้เวลาไม่นาน ทำทีละอย่าง และไม่สร้างความรู้สึกผิดเมื่อทำไม่ได้</p>
+        </div>
+        <div class="features-grid">
+          <article class="feature-card pink reveal"><div class="num">01</div><div class="feature-icon">🧩</div><h3>เล่นเพลิน</h3><p>กิจกรรมฝึกความคิดและความทรงจำแบบไม่จับเวลา</p><ul><li>ทายภาพครอบครัว</li><li>เรียงลำดับเหตุการณ์</li><li>เล่าเรื่องจากภาพในอดีต</li></ul></article>
+          <article class="feature-card blue reveal"><div class="num">02</div><div class="feature-icon">😊</div><h3>เช็กใจ</h3><p>เลือกอารมณ์ประจำวันด้วยคำง่าย ๆ แล้วรับคำแนะนำที่เหมาะสม</p><ul><li>ดีมาก / สบายดี</li><li>เฉย ๆ / เหงานิดหน่อย</li><li>แนะนำเพลง ขยับตัว หรือโทรหาใครสักคน</li></ul></article>
+          <article class="feature-card green reveal"><div class="num">03</div><div class="feature-icon">💧</div><h3>สุขภาพวันนี้</h3><p>บันทึกพฤติกรรมพื้นฐานทีละคำถาม เพื่อเห็นแนวโน้มของกิจวัตร</p><ul><li>การนอนและดื่มน้ำ</li><li>การรับประทานยา</li><li>การเคลื่อนไหวร่างกาย</li></ul></article>
+          <article class="feature-card yellow reveal"><div class="num">04</div><div class="feature-icon">☎️</div><h3>คุยเพลิน</h3><p>ลดความโดดเดี่ยวและทำให้การติดต่อครอบครัวเป็นเรื่องง่าย</p><ul><li>โทรด้วยการแตะครั้งเดียว</li><li>ฟังข้อความเสียง</li><li>ดูภาพและเรื่องราวจากลูกหลาน</li></ul></article>
+          <article class="feature-card purple reveal"><div class="num">05</div><div class="feature-icon">🔊</div><h3>อ่านออกเสียง</h3><p>อ่านข้อความและคำแนะนำภาษาไทย ช่วยผู้ที่อ่านไม่คล่องหรือมองเห็นไม่ชัด</p><ul><li>กดฟังได้ทุกหน้า</li><li>คำพูดสั้น ช้า และเป็นมิตร</li><li>ลดภาระในการอ่านข้อความยาว</li></ul></article>
+          <article class="feature-card peach reveal"><div class="num">06</div><div class="feature-icon">🌱</div><h3>ติดตามแบบอ่อนโยน</h3><p>แสดงกิจกรรมประจำวันจำนวนไม่มาก พร้อมแถบความคืบหน้าแทนการแข่งขัน</p><ul><li>ไม่ใช้คำว่า “ผิด”</li><li>ไม่มีคะแนนต่ำ</li><li>มีข้อความให้กำลังใจ</li></ul></article>
         </div>
       </div>
-
-      <div id="contactGrid" class="contact-grid"></div>
-
-      <section class="voice-card card">
-        <div class="voice-icon">🎙️</div>
-        <div>
-          <p class="eyebrow">ข้อความใหม่</p>
-          <h2>น้องข้าวส่งข้อความเสียงมา</h2>
-          <p>“คิดถึงคุณยายค่ะ เย็นนี้หนูจะโทรหานะคะ”</p>
-        </div>
-        <button id="playVoiceBtn" class="primary-button" type="button">▶ ฟังข้อความ</button>
-      </section>
     </section>
 
-    <!-- HEALTH -->
-    <section class="screen" id="screen-health" data-title="สุขภาพวันนี้">
-      <div class="page-heading">
-        <button class="back-button" type="button" data-go="home">← กลับ</button>
-        <div>
-          <p class="eyebrow">สุขภาพวันนี้</p>
-          <h1>วันนี้ดูแลตัวเองอย่างไรบ้างคะ?</h1>
-          <p>ตอบทีละข้อ ใช้เวลาไม่นานค่ะ</p>
-        </div>
-      </div>
-
-      <div id="healthForm" class="health-form">
-        <article class="health-question card" data-health="sleep">
-          <span class="question-icon">🌙</span>
-          <div>
-            <h2>เมื่อคืนหลับสบายไหมคะ?</h2>
-            <div class="choice-row">
-              <button type="button" data-value="หลับสบาย">หลับสบาย</button>
-              <button type="button" data-value="ตื่นบ้าง">ตื่นบ้าง</button>
-              <button type="button" data-value="นอนไม่ค่อยหลับ">นอนไม่ค่อยหลับ</button>
+    <section class="section compact" id="demo">
+      <div class="container">
+        <div class="demo-shell reveal">
+          <div class="demo-info">
+            <span class="kicker">ตัวอย่างประสบการณ์ใช้งาน</span>
+            <h2>เช็กใจง่าย ๆ<br>ในไม่กี่วินาที</h2>
+            <p>ทดลองเลือกอารมณ์ ระบบจะตอบกลับด้วยภาษาที่อบอุ่น และเสนอสิ่งเล็ก ๆ ที่ทำได้ทันที</p>
+            <div class="demo-bullets">
+              <div><span class="tick">✓</span> ไม่มีคำตอบผิด</div>
+              <div><span class="tick">✓</span> ไม่บังคับให้เล่ารายละเอียด</div>
+              <div><span class="tick">✓</span> แนะนำกิจกรรมที่ทำได้จริง</div>
             </div>
           </div>
-        </article>
-
-        <article class="health-question card" data-health="water">
-          <span class="question-icon">💧</span>
-          <div>
-            <h2>วันนี้ดื่มน้ำแล้วกี่แก้ว?</h2>
-            <div class="stepper">
-              <button type="button" data-step="-1" aria-label="ลดจำนวนแก้ว">−</button>
-              <strong id="waterCount">0</strong>
-              <span>แก้ว</span>
-              <button type="button" data-step="1" aria-label="เพิ่มจำนวนแก้ว">+</button>
+          <div class="mood-demo">
+            <h3>วันนี้ใจเป็นอย่างไรบ้างคะ?</h3>
+            <p>เลือกคำที่ใกล้กับความรู้สึกของคุณที่สุด</p>
+            <div class="mood-options">
+              <button class="mood-btn" data-mood="ดีมาก" data-message="ดีจังเลยค่ะ วันนี้ลองชวนคนที่เรารักมาแบ่งปันช่วงเวลาดี ๆ กันนะคะ"><span>🥰</span>ดีมาก</button>
+              <button class="mood-btn" data-mood="สบายดี" data-message="วันนี้ดูเป็นวันที่เบาสบาย ลองฟังเพลงโปรดหรือเดินเล่นสัก 5 นาทีนะคะ"><span>😊</span>สบายดี</button>
+              <button class="mood-btn" data-mood="เฉย ๆ" data-message="ไม่เป็นไรเลยค่ะ บางวันเราก็รู้สึกเฉย ๆ ลองยืดแขนขาและจิบน้ำสักแก้วกันนะคะ"><span>😌</span>เฉย ๆ</button>
+              <button class="mood-btn" data-mood="เหงานิดหน่อย" data-message="ขอบคุณที่บอกกันนะคะ ลองโทรหาลูกหลานหรือฟังข้อความเสียงที่คนในครอบครัวส่งมาให้ดีไหมคะ"><span>🥺</span>เหงานิดหน่อย</button>
             </div>
+            <div class="mood-result" id="moodResult" aria-live="polite">เลือกอารมณ์ด้านบน แล้วเพลินจิตจะอยู่เป็นเพื่อนคุณค่ะ 💗</div>
           </div>
-        </article>
-
-        <article class="health-question card" data-health="medicine">
-          <span class="question-icon">💊</span>
-          <div>
-            <h2>วันนี้ทานยาตามที่แพทย์แนะนำแล้วหรือยัง?</h2>
-            <div class="choice-row">
-              <button type="button" data-value="ทานแล้ว">ทานแล้ว</button>
-              <button type="button" data-value="ยังไม่ได้ทาน">ยังไม่ได้ทาน</button>
-              <button type="button" data-value="ไม่มียาประจำ">ไม่มียาประจำ</button>
-            </div>
-          </div>
-        </article>
+        </div>
       </div>
-
-      <button id="saveHealthBtn" class="primary-button wide-button" type="button">
-        บันทึกสุขภาพวันนี้
-      </button>
-
-      <p class="medical-note">
-        ข้อมูลนี้ใช้ติดตามพฤติกรรมเบื้องต้น ไม่ใช่การวินิจฉัยโรค หากมีอาการผิดปกติควรปรึกษาบุคลากรทางการแพทย์
-      </p>
     </section>
 
-    <!-- GARDEN -->
-    <section class="screen" id="screen-garden" data-title="สวนแห่งความสุข">
-      <div class="page-heading">
-        <button class="back-button" type="button" data-go="home">← กลับ</button>
-        <div>
-          <p class="eyebrow">รางวัลของวันนี้</p>
-          <h1>สวนแห่งความสุข</h1>
-          <p>ทุกกิจกรรมที่ทำ จะช่วยให้สวนของคุณยายสดใสขึ้นค่ะ</p>
+    <section class="section compact">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">แนวทางการออกแบบ</span>
+          <h2>เรียบง่าย อ่านสบาย และสบายใจ</h2>
+        </div>
+        <div class="principles">
+          <div class="principle reveal"><span>👆</span><strong>ปุ่มใหญ่</strong><small>แตะง่าย ลดการกดพลาด</small></div>
+          <div class="principle reveal"><span>ก</span><strong>ตัวอักษรชัด</strong><small>อ่านง่ายและเว้นระยะพอดี</small></div>
+          <div class="principle reveal"><span>🧭</span><strong>เมนูน้อย</strong><small>เห็นสิ่งสำคัญก่อนเสมอ</small></div>
+          <div class="principle reveal"><span>💬</span><strong>ภาษาสั้น</strong><small>เป็นมิตร ไม่ใช้ศัพท์ยาก</small></div>
+          <div class="principle reveal"><span>🌷</span><strong>ไม่ตัดสิน</strong><small>ให้กำลังใจแทนการให้คะแนน</small></div>
         </div>
       </div>
+    </section>
 
-      <div class="garden-scene card" aria-label="สวนรางวัล">
-        <div class="sun">☀️</div>
-        <div id="gardenClouds" class="clouds">☁️ ☁️</div>
-        <div class="garden-plants">
-          <span class="plant" data-level="1">🌱</span>
-          <span class="plant" data-level="2">🌷</span>
-          <span class="plant" data-level="3">🌻</span>
-          <span class="plant bonus" data-level="4">🦋</span>
-          <span class="plant bonus" data-level="5">🌳</span>
+    <section class="section" id="innovation">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">ความแตกต่างของนวัตกรรม</span>
+          <h2>ไม่ใช่แค่เกมฝึกสมอง<br>แต่เป็นระบบดูแลชีวิตประจำวัน</h2>
         </div>
-        <div class="garden-ground"></div>
+        <div class="innovation-grid">
+          <article class="innovation-card family reveal">
+            <h3>💞 ประสบการณ์เฉพาะบุคคลจากเรื่องจริง</h3>
+            <p>นำรูป เสียง เพลง และเรื่องราวของครอบครัวมาสร้างกิจกรรม ทำให้ผู้สูงอายุรู้สึกคุ้นเคย มีความหมาย และอยากกลับมาใช้งานต่อเนื่อง</p>
+            <div class="tag-list"><span class="tag">ภาพครอบครัว</span><span class="tag">เพลงโปรด</span><span class="tag">เรื่องเล่าในอดีต</span><span class="tag">ข้อความเสียง</span></div>
+          </article>
+          <article class="innovation-card all reveal">
+            <h3>🌿 ดูแลครบ 5 มิติในที่เดียว</h3>
+            <p>เชื่อมการฝึกสมอง การเคลื่อนไหว สุขภาพกาย อารมณ์ และความสัมพันธ์ทางสังคม ให้กลายเป็นกิจวัตรเล็ก ๆ ที่ทำได้ทุกวัน</p>
+            <div class="tag-list"><span class="tag">สมอง</span><span class="tag">ร่างกาย</span><span class="tag">สุขภาพ</span><span class="tag">อารมณ์</span><span class="tag">ครอบครัว</span></div>
+          </article>
+        </div>
       </div>
+    </section>
 
-      <div class="garden-summary card">
-        <h2 id="gardenTitle">เริ่มดูแลตัวเองวันละนิดนะคะ</h2>
-        <p id="gardenMessage">เมื่อทำกิจกรรมสำเร็จ สวนจะค่อย ๆ เติบโต</p>
-        <button class="primary-button" type="button" data-go="home">กลับไปทำกิจกรรม</button>
+    <section class="section compact" id="outcomes">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">ผลลัพธ์ที่คาดหวัง</span>
+          <h2>สร้างการเปลี่ยนแปลงจากกิจกรรมเล็ก ๆ ที่ทำได้ทุกวัน</h2>
+        </div>
+        <div class="outcomes">
+          <div class="outcome reveal"><b>🧠</b><p>ฝึกสมองอย่างสม่ำเสมอขึ้น</p></div>
+          <div class="outcome reveal"><b>🚶</b><p>เคลื่อนไหวร่างกายมากขึ้น</p></div>
+          <div class="outcome reveal"><b>🤝</b><p>ลดความรู้สึกโดดเดี่ยว</p></div>
+          <div class="outcome reveal"><b>👨‍👩‍👧</b><p>ครอบครัวดูแลได้ง่ายขึ้น</p></div>
+          <div class="outcome reveal"><b>📈</b><p>เห็นความเปลี่ยนแปลงได้เร็วขึ้น</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">กลุ่มเป้าหมาย</span>
+          <h2>ออกแบบเพื่อผู้สูงวัย และทุกคนที่อยู่รอบตัว</h2>
+        </div>
+        <div class="audience-wrap reveal">
+          <span class="audience-chip">👵 ผู้สูงอายุที่ดูแลตัวเองได้</span>
+          <span class="audience-chip">🧠 ผู้ที่เริ่มมีความเสี่ยงด้านความจำ</span>
+          <span class="audience-chip">👨‍👩‍👧 ลูกหลานและผู้ดูแล</span>
+          <span class="audience-chip">🏡 ศูนย์ดูแลและชมรมผู้สูงอายุ</span>
+          <span class="audience-chip">🏥 โรงพยาบาลและบุคลากรสุขภาพ</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="container">
+        <div class="cta-box reveal">
+          <div>
+            <h2>เพราะการดูแลสมอง<br>ควรเริ่มตั้งแต่วันนี้อย่างสบายใจ</h2>
+            <p>PlearnJit – เพลินจิต ช่วยให้ผู้สูงวัยดูแลตัวเองได้อย่างมั่นใจ และช่วยให้ครอบครัวใกล้กันมากขึ้นในทุกวัน</p>
+          </div>
+          <a class="btn" href="#top">กลับไปดูต้นแบบ ↑</a>
+        </div>
       </div>
     </section>
   </main>
 
-  <nav class="bottom-nav" aria-label="เมนูด้านล่าง">
-    <button type="button" data-go="home" class="active">
-      <span>🏠</span><small>หน้าหลัก</small>
-    </button>
-    <button type="button" data-go="play">
-      <span>🧠</span><small>เล่น</small>
-    </button>
-    <button type="button" data-go="move">
-      <span>🚶</span><small>ขยับ</small>
-    </button>
-    <button type="button" data-go="talk">
-      <span>💬</span><small>คุย</small>
-    </button>
-  </nav>
+  <footer>
+    <div class="container footer-inner">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">🌼</span><span class="brand-name">PlearnJit <small>สนุกทุกวัน ใจดี สมองดี</small></span></div>
+      <div>ต้นแบบเว็บไซต์แนะนำโครงการ Healthy Longevity Tech</div>
+    </div>
+  </footer>
 
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open);
+      menuBtn.textContent = open ? '✕' : '☰';
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.textContent = '☰';
+    }));
 
-  <dialog id="callDialog" class="call-dialog">
-    <div class="call-avatar" id="callAvatar">👩</div>
-    <h2 id="callName">กำลังโทรหาลูกนิด</h2>
-    <p id="callStatus">กำลังเชื่อมต่อสาย...</p>
-    <button id="endCallBtn" class="danger-button" type="button">วางสาย</button>
-  </dialog>
+    const speak = (text) => {
+      if (!('speechSynthesis' in window)) {
+        alert('เบราว์เซอร์นี้ยังไม่รองรับระบบอ่านออกเสียง');
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'th-TH';
+      utterance.rate = 0.88;
+      utterance.pitch = 1.02;
+      window.speechSynthesis.speak(utterance);
+    };
 
-  <script src="app.js"></script>
+    document.getElementById('speakIntro').addEventListener('click', () => {
+      speak('เพลินจิต แอปเพื่อนใจดีสำหรับผู้สูงวัย สนุกทุกวัน ใจดี สมองดี');
+    });
+    document.getElementById('phoneSpeak').addEventListener('click', () => {
+      speak('สวัสดีค่ะ วันนี้เรามีกิจกรรมเบา ๆ สามอย่าง ได้แก่ เล่นเพลิน เช็กใจ สุขภาพวันนี้ และคุยเพลิน');
+    });
+
+    const moodResult = document.getElementById('moodResult');
+    document.querySelectorAll('.mood-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        moodResult.textContent = btn.dataset.message;
+      });
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  </script>
 </body>
 </html>
