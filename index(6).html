@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#F39A68" />
+  <meta name="description" content="PlearnJit แอปดูแลสุขภาพกาย ใจ และสมองสำหรับผู้สูงวัย" />
+  <title>PlearnJit – เพลินจิต</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">ข้ามไปยังเนื้อหาหลัก</a>
+
+  <header class="topbar">
+    <button class="brand" type="button" data-go="home" aria-label="กลับหน้าหลัก">
+      <span class="brand-mark" aria-hidden="true">☺</span>
+      <span>
+        <strong>PlearnJit</strong>
+        <small>เพลินจิต</small>
+      </span>
+    </button>
+
+    <div class="top-actions">
+      <button id="speakPageBtn" class="icon-button" type="button" aria-label="อ่านหน้านี้ให้ฟัง">
+        🔊 <span>อ่านให้ฟัง</span>
+      </button>
+      <button id="fontBtn" class="icon-button" type="button" aria-label="ปรับขนาดตัวอักษร">
+        ก+ <span>ตัวใหญ่</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="mainContent" tabindex="-1">
+    <!-- HOME -->
+    <section class="screen active" id="screen-home" data-title="หน้าหลัก">
+      <div class="hero-card">
+        <div class="mascot" aria-label="น้องเพลิน มาสคอตของแอป">
+          <div class="mascot-face">
+            <span class="glasses">◉ ◉</span>
+            <span class="smile">⌣</span>
+          </div>
+          <div class="mascot-body">💛</div>
+        </div>
+
+        <div class="hero-copy">
+          <p id="dateText" class="date-text"></p>
+          <h1 id="greetingText">สวัสดีค่ะ คุณยายอร 🌤️</h1>
+          <p>วันนี้น้องเพลินมีกิจกรรมง่าย ๆ ให้ทำด้วยกันค่ะ</p>
+          <div class="daily-progress" aria-label="ความคืบหน้ากิจกรรมวันนี้">
+            <div class="progress-label">
+              <span>กิจกรรมวันนี้</span>
+              <strong id="progressText">0 / 3</strong>
+            </div>
+            <div class="progress-track" aria-hidden="true">
+              <div id="progressBar" class="progress-bar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section class="quick-check card" aria-labelledby="moodTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">เช็กใจสักนิด</p>
+            <h2 id="moodTitle">วันนี้รู้สึกอย่างไรบ้างคะ?</h2>
+          </div>
+          <button class="soft-button" type="button" data-go="mood">เลือกอารมณ์</button>
+        </div>
+        <p id="moodSummary" class="muted">ยังไม่ได้บันทึกอารมณ์วันนี้</p>
+      </section>
+
+      <section class="menu-grid" aria-label="เมนูหลัก">
+        <button class="menu-card peach" type="button" data-go="play">
+          <span class="menu-icon">🧠</span>
+          <strong>เล่นเพลิน</strong>
+          <span>ฝึกสมองแบบสบาย ๆ</span>
+        </button>
+
+        <button class="menu-card mint" type="button" data-go="move">
+          <span class="menu-icon">🚶</span>
+          <strong>ขยับเพลิน</strong>
+          <span>ยืดเส้นและเคลื่อนไหว</span>
+        </button>
+
+        <button class="menu-card yellow" type="button" data-go="talk">
+          <span class="menu-icon">💬</span>
+          <strong>คุยเพลิน</strong>
+          <span>โทรหาและฟังเสียงคนที่รัก</span>
+        </button>
+
+        <button class="menu-card rose" type="button" data-go="health">
+          <span class="menu-icon">❤️</span>
+          <strong>สุขภาพวันนี้</strong>
+          <span>บันทึกการนอน น้ำ และยา</span>
+        </button>
+      </section>
+
+      <section class="today-card card" aria-labelledby="todayTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">ทำทีละนิดก็เก่งแล้ว</p>
+            <h2 id="todayTitle">กิจกรรมของวันนี้</h2>
+          </div>
+          <button class="soft-button" type="button" data-go="garden">ดูสวนของฉัน</button>
+        </div>
+        <div id="taskList" class="task-list"></div>
+      </section>
+
+      <button id="callFamilyBtn" class="emergency-button" type="button">
+        📞 โทรหาครอบครัว
+      </button>
+    </section>
+
+    <!-- MOOD -->
+    <section class="screen" id="screen-mood" data-title="บันทึกอารมณ์">
+      <div class="page-heading">
+        <button class="back-button" type="button" data-go="home">← กลับ</button>
+        <div>
+          <p class="eyebrow">น้องเพลินอยากฟัง</p>
+          <h1>วันนี้รู้สึกอย่างไรบ้างคะ?</h1>
+          <p>เลือกคำตอบที่ใกล้กับความรู้สึกที่สุด ไม่มีคำตอบผิดค่ะ</p>
+        </div>
+      </div>
+      <div id="moodGrid" class="mood-grid"></div>
+      <div id="moodAdvice" class="advice-card hidden" aria-live="polite"></div>
+    </section>
+
+    <!-- PLAY -->
+    <section class="screen" id="screen-play" data-title="เล่นเพลิน">
+      <div class="page-heading">
+        <button class="back-button" type="button" data-go="home">← กลับ</button>
+        <div>
+          <p class="eyebrow">เล่นเพลิน</p>
+          <h1>กิจกรรมฝึกสมอง</h1>
+          <p>ไม่มีจับเวลา เล่นช้า ๆ ได้ตามสบายค่ะ</p>
+        </div>
+      </div>
+
+      <div class="activity-grid">
+        <button class="activity-card" type="button" data-activity="memory">
+          <span>🖼️</span>
+          <strong>ทายภาพความทรงจำ</strong>
+          <small>นึกถึงเรื่องราวดี ๆ จากภาพครอบครัว</small>
+        </button>
+        <button class="activity-card" type="button" data-activity="sequence">
+          <span>🔢</span>
+          <strong>เรียงลำดับตัวเลข</strong>
+          <small>กิจกรรมสั้น ๆ ช่วยฝึกสมาธิ</small>
+        </button>
+        <button class="activity-card" type="button" data-activity="shopping">
+          <span>🛒</span>
+          <strong>ไปตลาดกัน</strong>
+          <small>เลือกของใช้จากรายการง่าย ๆ</small>
+        </button>
+      </div>
+
+      <div id="activityStage" class="activity-stage card">
+        <div class="empty-state">
+          <span>🌼</span>
+          <h2>เลือกกิจกรรมที่อยากเล่นได้เลยค่ะ</h2>
+          <p>ทำเสร็จแล้วดอกไม้ในสวนจะค่อย ๆ บาน</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MOVE -->
+    <section class="screen" id="screen-move" data-title="ขยับเพลิน">
+      <div class="page-heading">
+        <button class="back-button" type="button" data-go="home">← กลับ</button>
+        <div>
+          <p class="eyebrow">ขยับเพลิน</p>
+          <h1>ยืดเส้นเบา ๆ 3 นาที</h1>
+          <p>ทำเท่าที่ไหว หากเวียนหัวหรือเจ็บ ให้หยุดพักทันทีค่ะ</p>
+        </div>
+      </div>
+
+      <div class="exercise-layout">
+        <div class="exercise-visual card">
+          <div id="exerciseEmoji" class="exercise-emoji">🙆</div>
+          <h2 id="exerciseName">ยกแขนขึ้นช้า ๆ</h2>
+          <p id="exerciseInstruction">นั่งหลังตรง ยกแขนทั้งสองข้างขึ้นเหนือศีรษะ แล้วค่อย ๆ ลดลง</p>
+          <div class="timer" aria-live="polite">
+            <span id="exerciseTimer">00:30</span>
+          </div>
+          <div class="button-row">
+            <button id="startExerciseBtn" class="primary-button" type="button">เริ่มขยับ</button>
+            <button id="nextExerciseBtn" class="secondary-button" type="button">ท่าถัดไป</button>
+          </div>
+        </div>
+
+        <div class="exercise-list card">
+          <h2>ท่าของวันนี้</h2>
+          <ol id="exerciseList"></ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- TALK -->
+    <section class="screen" id="screen-talk" data-title="คุยเพลิน">
+      <div class="page-heading">
+        <button class="back-button" type="button" data-go="home">← กลับ</button>
+        <div>
+          <p class="eyebrow">คุยเพลิน</p>
+          <h1>อยากคุยกับใครคะ?</h1>
+          <p>แตะรูปหนึ่งครั้งเพื่อโทรหา หรือฟังข้อความเสียงจากครอบครัว</p>
+        </div>
+      </div>
+
+      <div id="contactGrid" class="contact-grid"></div>
+
+      <section class="voice-card card">
+        <div class="voice-icon">🎙️</div>
+        <div>
+          <p class="eyebrow">ข้อความใหม่</p>
+          <h2>น้องข้าวส่งข้อความเสียงมา</h2>
+          <p>“คิดถึงคุณยายค่ะ เย็นนี้หนูจะโทรหานะคะ”</p>
+        </div>
+        <button id="playVoiceBtn" class="primary-button" type="button">▶ ฟังข้อความ</button>
+      </section>
+    </section>
+
+    <!-- HEALTH -->
+    <section class="screen" id="screen-health" data-title="สุขภาพวันนี้">
+      <div class="page-heading">
+        <button class="back-button" type="button" data-go="home">← กลับ</button>
+        <div>
+          <p class="eyebrow">สุขภาพวันนี้</p>
+          <h1>วันนี้ดูแลตัวเองอย่างไรบ้างคะ?</h1>
+          <p>ตอบทีละข้อ ใช้เวลาไม่นานค่ะ</p>
+        </div>
+      </div>
+
+      <div id="healthForm" class="health-form">
+        <article class="health-question card" data-health="sleep">
+          <span class="question-icon">🌙</span>
+          <div>
+            <h2>เมื่อคืนหลับสบายไหมคะ?</h2>
+            <div class="choice-row">
+              <button type="button" data-value="หลับสบาย">หลับสบาย</button>
+              <button type="button" data-value="ตื่นบ้าง">ตื่นบ้าง</button>
+              <button type="button" data-value="นอนไม่ค่อยหลับ">นอนไม่ค่อยหลับ</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="health-question card" data-health="water">
+          <span class="question-icon">💧</span>
+          <div>
+            <h2>วันนี้ดื่มน้ำแล้วกี่แก้ว?</h2>
+            <div class="stepper">
+              <button type="button" data-step="-1" aria-label="ลดจำนวนแก้ว">−</button>
+              <strong id="waterCount">0</strong>
+              <span>แก้ว</span>
+              <button type="button" data-step="1" aria-label="เพิ่มจำนวนแก้ว">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="health-question card" data-health="medicine">
+          <span class="question-icon">💊</span>
+          <div>
+            <h2>วันนี้ทานยาตามที่แพทย์แนะนำแล้วหรือยัง?</h2>
+            <div class="choice-row">
+              <button type="button" data-value="ทานแล้ว">ทานแล้ว</button>
+              <button type="button" data-value="ยังไม่ได้ทาน">ยังไม่ได้ทาน</button>
+              <button type="button" data-value="ไม่มียาประจำ">ไม่มียาประจำ</button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <button id="saveHealthBtn" class="primary-button wide-button" type="button">
+        บันทึกสุขภาพวันนี้
+      </button>
+
+      <p class="medical-note">
+        ข้อมูลนี้ใช้ติดตามพฤติกรรมเบื้องต้น ไม่ใช่การวินิจฉัยโรค หากมีอาการผิดปกติควรปรึกษาบุคลากรทางการแพทย์
+      </p>
+    </section>
+
+    <!-- GARDEN -->
+    <section class="screen" id="screen-garden" data-title="สวนแห่งความสุข">
+      <div class="page-heading">
+        <button class="back-button" type="button" data-go="home">← กลับ</button>
+        <div>
+          <p class="eyebrow">รางวัลของวันนี้</p>
+          <h1>สวนแห่งความสุข</h1>
+          <p>ทุกกิจกรรมที่ทำ จะช่วยให้สวนของคุณยายสดใสขึ้นค่ะ</p>
+        </div>
+      </div>
+
+      <div class="garden-scene card" aria-label="สวนรางวัล">
+        <div class="sun">☀️</div>
+        <div id="gardenClouds" class="clouds">☁️ ☁️</div>
+        <div class="garden-plants">
+          <span class="plant" data-level="1">🌱</span>
+          <span class="plant" data-level="2">🌷</span>
+          <span class="plant" data-level="3">🌻</span>
+          <span class="plant bonus" data-level="4">🦋</span>
+          <span class="plant bonus" data-level="5">🌳</span>
+        </div>
+        <div class="garden-ground"></div>
+      </div>
+
+      <div class="garden-summary card">
+        <h2 id="gardenTitle">เริ่มดูแลตัวเองวันละนิดนะคะ</h2>
+        <p id="gardenMessage">เมื่อทำกิจกรรมสำเร็จ สวนจะค่อย ๆ เติบโต</p>
+        <button class="primary-button" type="button" data-go="home">กลับไปทำกิจกรรม</button>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="เมนูด้านล่าง">
+    <button type="button" data-go="home" class="active">
+      <span>🏠</span><small>หน้าหลัก</small>
+    </button>
+    <button type="button" data-go="play">
+      <span>🧠</span><small>เล่น</small>
+    </button>
+    <button type="button" data-go="move">
+      <span>🚶</span><small>ขยับ</small>
+    </button>
+    <button type="button" data-go="talk">
+      <span>💬</span><small>คุย</small>
+    </button>
+  </nav>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <dialog id="callDialog" class="call-dialog">
+    <div class="call-avatar" id="callAvatar">👩</div>
+    <h2 id="callName">กำลังโทรหาลูกนิด</h2>
+    <p id="callStatus">กำลังเชื่อมต่อสาย...</p>
+    <button id="endCallBtn" class="danger-button" type="button">วางสาย</button>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
