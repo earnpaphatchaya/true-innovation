@@ -46,6 +46,9 @@
         radial-gradient(circle at 95% 12%, rgba(185,221,247,.38), transparent 28%),
         var(--cream);
       line-height: 1.75;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
@@ -96,8 +99,23 @@
       background: rgba(255,255,255,.75); border: 1px solid rgba(77,70,80,.08);
       font-weight: 700; color: #675f68; box-shadow: var(--shadow-soft);
     }
-    h1, h2, h3 { font-family: "Mali", sans-serif; margin-top: 0; line-height: 1.35; }
-    h1 { font-size: clamp(2.65rem, 6vw, 5.25rem); margin: 22px 0 18px; letter-spacing: -.045em; }
+    h1, h2, h3 {
+      font-family: "Mali", "Noto Sans Thai", sans-serif;
+      margin-top: 0;
+      font-weight: 700;
+      letter-spacing: 0;
+      word-break: normal;
+      overflow-wrap: break-word;
+      text-wrap: balance;
+    }
+    h1 {
+      font-size: clamp(2.65rem, 6vw, 5.25rem);
+      margin: 22px 0 18px;
+      line-height: 1.32;
+      letter-spacing: -.02em;
+    }
+    h2 { line-height: 1.55; }
+    h3 { line-height: 1.5; }
     .gradient-text {
       background: linear-gradient(90deg, #e67d9e, #ee9c65, #8f7ab7);
       -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -157,8 +175,18 @@
     .float-note.b { right: -12px; bottom: 88px; transform: rotate(3deg); }
 
     .section-head { max-width: 760px; margin: 0 auto 42px; text-align: center; }
-    .kicker { font-weight: 800; color: var(--pink-strong); letter-spacing: .04em; }
-    h2 { font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 14px; }
+    .kicker {
+      display: inline-block;
+      margin-bottom: 14px;
+      font-weight: 800;
+      color: var(--pink-strong);
+      letter-spacing: .02em;
+      line-height: 1.55;
+    }
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      margin-bottom: 18px;
+    }
     .section-head p { color: var(--muted); font-size: 1.08rem; margin: 0; }
 
     .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
@@ -314,7 +342,7 @@
         <a href="#features">ฟีเจอร์</a>
         <a href="#innovation">จุดเด่น</a>
         <a href="#outcomes">ผลลัพธ์</a>
-        <a class="nav-cta" href="#demo">ลองเดโม</a>
+        <a class="nav-cta" href="#demo">ทดลองใช้ฟรี</a>
       </div>
     </div>
   </nav>
