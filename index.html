@@ -85,7 +85,7 @@
     .brand-name { font-family: "Mali", sans-serif; font-size: 1.22rem; line-height: 1.1; }
     .brand-name small { display: block; font-family: "Noto Sans Thai"; color: var(--muted); font-size: .72rem; font-weight: 600; margin-top: 4px; }
 
-    .nav-links { display: flex; align-items: center; gap: 26px; font-weight: 700; color: #625b65; }
+    .nav-links { display: flex; align-items: center; gap: 18px; font-weight: 700; color: #625b65; font-size: .93rem; white-space: nowrap; }
     .nav-links a { padding: 8px 0; border-bottom: 3px solid transparent; }
     .nav-links a:hover, .nav-links a:focus-visible { color: var(--pink-strong); border-color: var(--pink); }
     .nav-cta { background: var(--ink); color: white !important; border: 0 !important; padding: 12px 20px !important; border-radius: 999px; }
@@ -278,6 +278,168 @@
     .cta-box p { margin: 0; color: rgba(255,255,255,.76); max-width: 700px; }
     .cta-box .btn { position: relative; z-index: 1; background: var(--yellow); color: var(--ink); white-space: nowrap; }
 
+
+    /* Pitch deck sections */
+    .pitch-label {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 13px;
+      border-radius: 999px; background: rgba(255,255,255,.72);
+      border: 1px solid rgba(77,70,80,.08); color: #6b626d;
+      font-size: .88rem; font-weight: 800; box-shadow: var(--shadow-soft);
+    }
+    .target-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .target-card {
+      background: rgba(255,255,255,.82); border: 1px solid rgba(77,70,80,.07);
+      border-radius: var(--radius-md); padding: 28px; box-shadow: var(--shadow-soft);
+      position: relative; overflow: hidden;
+    }
+    .target-card::after {
+      content: ""; position: absolute; width: 110px; height: 110px; border-radius: 50%;
+      right: -48px; bottom: -48px; background: rgba(247,184,200,.28);
+    }
+    .target-card:nth-child(2)::after { background: rgba(185,221,247,.38); }
+    .target-card:nth-child(3)::after { background: rgba(200,231,207,.42); }
+    .target-icon { font-size: 2.2rem; margin-bottom: 14px; }
+    .target-card h3 { margin-bottom: 7px; font-size: 1.35rem; }
+    .target-card p { color: var(--muted); margin: 0 0 12px; }
+    .target-card ul { margin: 0; padding-left: 20px; color: #68616b; }
+    .target-card li { margin: 6px 0; }
+    .role-tag { display: inline-block; margin-top: 10px; padding: 7px 11px; border-radius: 999px; background: #fff0c7; font-weight: 800; font-size: .86rem; }
+
+    .insight-box {
+      margin-top: 24px; background: linear-gradient(135deg, #ffe2ea, #e6f3fb);
+      border-radius: var(--radius-md); padding: 28px; display: grid;
+      grid-template-columns: auto 1fr; gap: 18px; align-items: center;
+      box-shadow: var(--shadow-soft);
+    }
+    .insight-quote { font-family: "Mali", "Noto Sans Thai", sans-serif; font-size: 1.3rem; font-weight: 700; line-height: 1.6; }
+    .insight-box .big-icon { font-size: 3rem; }
+
+    .market-hero {
+      display: grid; grid-template-columns: .86fr 1.14fr; gap: 26px; align-items: stretch;
+      margin-bottom: 26px;
+    }
+    .market-main {
+      background: linear-gradient(145deg, #4f4852, #665d69); color: white;
+      border-radius: var(--radius-lg); padding: 38px; box-shadow: var(--shadow);
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .market-main .big-number { font-family: "Mali"; font-size: clamp(3.2rem, 7vw, 5.6rem); font-weight: 700; line-height: 1; color: var(--yellow); }
+    .market-main h3 { margin: 16px 0 8px; font-size: 1.45rem; }
+    .market-main p { color: rgba(255,255,255,.76); margin: 0; }
+    .market-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .market-fact { background: rgba(255,255,255,.82); border-radius: 24px; padding: 25px; box-shadow: var(--shadow-soft); }
+    .market-fact b { display: block; font-family: "Mali"; font-size: 2rem; margin-bottom: 7px; }
+    .market-fact p { margin: 0; color: var(--muted); }
+
+    .market-size-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 26px; }
+    .market-size-card { border-radius: 24px; padding: 27px; box-shadow: var(--shadow-soft); border: 1px solid rgba(77,70,80,.06); }
+    .market-size-card.tam { background: #ffe0e8; }
+    .market-size-card.sam { background: #dff1fc; }
+    .market-size-card.som { background: #e0f1e4; }
+    .market-size-card .market-code { font-family: "Mali"; font-size: 1rem; font-weight: 800; opacity: .72; }
+    .market-size-card strong { display: block; font-family: "Mali"; font-size: clamp(1.65rem, 3vw, 2.35rem); margin: 7px 0; }
+    .market-size-card p { margin: 0; color: #68616b; }
+    .formula { margin-top: 11px; padding-top: 11px; border-top: 1px dashed rgba(77,70,80,.18); font-size: .88rem; color: #746d77; }
+    .assumption-note { margin-top: 15px; color: var(--muted); font-size: .9rem; }
+
+    .table-shell { overflow-x: auto; border-radius: 26px; box-shadow: var(--shadow-soft); background: white; border: 1px solid rgba(77,70,80,.07); }
+    .comparison-table { width: 100%; min-width: 820px; border-collapse: collapse; }
+    .comparison-table th, .comparison-table td { padding: 17px 15px; text-align: center; border-bottom: 1px solid rgba(77,70,80,.08); }
+    .comparison-table th { background: #fff5ed; font-size: .93rem; }
+    .comparison-table th:first-child, .comparison-table td:first-child { text-align: left; font-weight: 800; position: sticky; left: 0; background: #fffdf9; }
+    .comparison-table tr:last-child td { border-bottom: 0; }
+    .comparison-table .ours td { background: #fff0f4; font-weight: 800; }
+    .comparison-table .ours td:first-child { background: #ffe3eb; }
+    .status-strong { color: #4f8f61; font-weight: 900; }
+    .status-part { color: #b1802b; font-weight: 900; }
+    .status-low { color: #a49da6; }
+
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: stretch; }
+    .price-card {
+      background: rgba(255,255,255,.84); border-radius: var(--radius-lg); padding: 31px;
+      border: 1px solid rgba(77,70,80,.08); box-shadow: var(--shadow-soft);
+      position: relative; display: flex; flex-direction: column;
+    }
+    .price-card.featured { background: linear-gradient(160deg, #ffe0e8, #fff0c7); border: 2px solid rgba(232,128,160,.42); transform: translateY(-8px); }
+    .price-badge { position: absolute; top: 18px; right: 18px; padding: 7px 11px; border-radius: 999px; background: var(--ink); color: white; font-size: .8rem; font-weight: 800; }
+    .price-card h3 { font-size: 1.4rem; margin-bottom: 5px; }
+    .price-card > p { color: var(--muted); margin: 0 0 14px; }
+    .price { font-family: "Mali"; font-size: 2.45rem; font-weight: 700; margin: 8px 0 15px; }
+    .price small { font-family: "Noto Sans Thai"; font-size: .92rem; color: var(--muted); font-weight: 600; }
+    .price-card ul { padding-left: 20px; color: #665f68; margin: 0 0 22px; }
+    .price-card li { margin: 7px 0; }
+    .price-card .plan-note { margin-top: auto; padding: 12px 14px; border-radius: 15px; background: rgba(255,255,255,.64); font-size: .87rem; color: #6b636d; }
+    .revenue-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 24px; }
+    .revenue-chip { padding: 10px 14px; border-radius: 999px; background: white; box-shadow: var(--shadow-soft); font-weight: 800; }
+
+    .timeline { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .phase-card { background: white; border-radius: var(--radius-md); padding: 28px; box-shadow: var(--shadow-soft); border-top: 8px solid var(--pink); }
+    .phase-card:nth-child(2) { border-top-color: var(--blue-strong); }
+    .phase-card:nth-child(3) { border-top-color: var(--green-strong); }
+    .phase-label { color: var(--pink-strong); font-weight: 900; font-size: .9rem; }
+    .phase-card:nth-child(2) .phase-label { color: var(--blue-strong); }
+    .phase-card:nth-child(3) .phase-label { color: var(--green-strong); }
+    .phase-card h3 { margin: 8px 0 4px; font-size: 1.35rem; }
+    .phase-time { font-weight: 800; color: var(--muted); }
+    .phase-card ul { padding-left: 20px; color: #68616b; }
+    .phase-card li { margin: 7px 0; }
+    .acquisition-callout { margin-top: 24px; border-radius: 24px; padding: 25px 28px; background: #ece3f7; color: #655875; font-family: "Mali"; font-weight: 700; text-align: center; font-size: 1.14rem; }
+
+    .true-shell {
+      background: linear-gradient(145deg, #4f4852 0%, #5d5361 56%, #765f6e 100%);
+      color: white; border-radius: 38px; padding: 46px; box-shadow: var(--shadow); overflow: hidden; position: relative;
+    }
+    .true-shell::after { content: "5G"; position: absolute; right: -16px; top: -55px; font-family: "Mali"; font-size: 10rem; font-weight: 700; color: rgba(255,255,255,.055); }
+    .true-shell .kicker { color: #ffc5d5; }
+    .true-shell h2 { max-width: 850px; margin-bottom: 12px; }
+    .true-shell > p { color: rgba(255,255,255,.76); max-width: 850px; }
+    .true-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; position: relative; z-index: 1; }
+    .true-card { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.14); border-radius: 22px; padding: 23px; backdrop-filter: blur(8px); }
+    .true-card span { font-size: 1.8rem; }
+    .true-card h3 { margin: 11px 0 5px; font-size: 1.18rem; }
+    .true-card p { color: rgba(255,255,255,.7); margin: 0; font-size: .94rem; }
+
+    .kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 28px; }
+    .kpi-card { border-radius: 22px; padding: 22px 16px; background: rgba(255,255,255,.86); text-align: center; box-shadow: var(--shadow-soft); }
+    .kpi-card strong { display: block; font-family: "Mali"; font-size: 1.75rem; color: var(--pink-strong); }
+    .kpi-card small { color: var(--muted); line-height: 1.55; }
+
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .team-card { background: white; border-radius: 25px; padding: 25px; box-shadow: var(--shadow-soft); text-align: center; }
+    .team-avatar { width: 76px; height: 76px; margin: 0 auto 14px; border-radius: 25px; display: grid; place-items: center; font-size: 2rem; background: linear-gradient(145deg, #ffd9e3, #ffe9bc); }
+    .team-card:nth-child(2) .team-avatar { background: linear-gradient(145deg, #d9eefb, #e5def4); }
+    .team-card:nth-child(3) .team-avatar { background: linear-gradient(145deg, #dcefe0, #fff0c4); }
+    .team-card:nth-child(4) .team-avatar { background: linear-gradient(145deg, #ffe3d2, #e9ddf6); }
+    .team-card h3 { margin: 0 0 3px; font-size: 1.15rem; }
+    .team-role { color: var(--pink-strong); font-weight: 900; margin-bottom: 10px; }
+    .team-card p { color: var(--muted); font-size: .92rem; margin: 0; }
+    .editable-note { margin-top: 18px; text-align: center; color: var(--muted); font-size: .9rem; }
+
+    .source-box { margin-top: 30px; padding: 22px 24px; border-radius: 22px; background: rgba(255,255,255,.65); border: 1px solid rgba(77,70,80,.08); }
+    .source-box strong { display: block; margin-bottom: 8px; }
+    .source-links { display: flex; flex-wrap: wrap; gap: 9px; }
+    .source-links a { padding: 7px 11px; border-radius: 999px; background: white; font-size: .84rem; font-weight: 700; color: #6b636d; border: 1px solid rgba(77,70,80,.08); }
+    .source-links a:hover { color: var(--pink-strong); }
+
+    @media (max-width: 1100px) {
+      .nav-links { gap: 13px; font-size: .86rem; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .kpi-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 980px) {
+      .target-grid, .pricing-grid, .timeline, .true-grid { grid-template-columns: 1fr; }
+      .market-hero { grid-template-columns: 1fr; }
+      .market-size-grid { grid-template-columns: 1fr; }
+      .price-card.featured { transform: none; }
+    }
+    @media (max-width: 680px) {
+      .market-facts { grid-template-columns: 1fr; }
+      .team-grid, .kpi-grid { grid-template-columns: 1fr; }
+      .insight-box { grid-template-columns: 1fr; text-align: center; }
+      .true-shell { padding: 34px 24px; border-radius: 28px; }
+      .market-main { padding: 30px 24px; }
+    }
+
     footer { padding: 38px 0 52px; color: var(--muted); }
     .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 18px; border-top: 1px solid rgba(77,70,80,.1); padding-top: 28px; }
 
@@ -338,11 +500,14 @@
       </a>
       <button class="menu-btn" id="menuBtn" aria-label="เปิดเมนู" aria-expanded="false">☰</button>
       <div class="nav-links" id="navLinks">
-        <a href="#about">แนวคิด</a>
-        <a href="#features">ฟีเจอร์</a>
-        <a href="#innovation">จุดเด่น</a>
-        <a href="#outcomes">ผลลัพธ์</a>
-        <a class="nav-cta" href="#demo">ทดลองใช้ฟรี</a>
+        <a href="#about">ปัญหา</a>
+        <a href="#target">กลุ่มเป้าหมาย</a>
+        <a href="#features">โซลูชัน</a>
+        <a href="#market">ตลาด</a>
+        <a href="#business">โมเดลธุรกิจ</a>
+        <a href="#true-opportunity">โอกาสสำหรับ True</a>
+        <a href="#team">ทีม</a>
+        <a class="nav-cta" href="#demo">ทดลองเดโม</a>
       </div>
     </div>
   </nav>
@@ -401,6 +566,43 @@
           <article class="problem-card reveal"><div class="problem-icon">📝</div><div><h3>เหมือนกำลังทำข้อสอบ</h3><p>กิจกรรมที่เป็นทางการ มีเวลาและคะแนน อาจสร้างความกังวลมากกว่าความสนุก</p></div></article>
           <article class="problem-card reveal"><div class="problem-icon">📅</div><div><h3>ทำได้ไม่นานก็หยุด</h3><p>เมื่อกิจกรรมไม่สอดคล้องกับชีวิตจริง ผู้สูงอายุจึงขาดแรงจูงใจในการกลับมาใช้งาน</p></div></article>
           <article class="problem-card reveal"><div class="problem-icon">🏡</div><div><h3>ครอบครัวมองไม่เห็นความเปลี่ยนแปลง</h3><p>ลูกหลานไม่ทราบกิจวัตร อารมณ์ หรือสัญญาณเปลี่ยนแปลงเล็ก ๆ ที่เกิดขึ้นทุกวัน</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="target">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">Target Customer</span>
+          <h2>ผู้ใช้งานคือผู้สูงวัย<br>ผู้จ่ายเงินอาจเป็นครอบครัวและองค์กร</h2>
+          <p>เราออกแบบประสบการณ์ให้เหมาะกับผู้สูงอายุ แต่สร้างคุณค่าร่วมให้ลูกหลาน ผู้ดูแล และหน่วยงานด้านสุขภาพ</p>
+        </div>
+        <div class="target-grid">
+          <article class="target-card reveal">
+            <div class="target-icon">👵</div>
+            <h3>Primary User</h3>
+            <p><strong>ผู้สูงอายุประมาณ 60–75 ปี</strong> ที่ยังดูแลตัวเองได้และใช้สมาร์ตโฟนพื้นฐาน</p>
+            <ul><li>ต้องการดูแลสมองและสุขภาพ</li><li>เริ่มรู้สึกหลงลืมหรือเหงานิดหน่อย</li><li>ไม่ชอบแอปที่ซับซ้อนหรือเหมือนข้อสอบ</li></ul>
+            <span class="role-tag">ผู้ใช้งานหลัก</span>
+          </article>
+          <article class="target-card reveal">
+            <div class="target-icon">👨‍👩‍👧</div>
+            <h3>Paying Customer</h3>
+            <p><strong>ลูกหลานและผู้ดูแลประมาณ 30–55 ปี</strong> ที่ต้องการดูแลพ่อแม่จากระยะไกล</p>
+            <ul><li>ต้องการเห็นแนวโน้มกิจวัตรและอารมณ์</li><li>กังวลเรื่องยา การนอน และความจำ</li><li>ยินดีจ่ายเพื่อความสบายใจของครอบครัว</li></ul>
+            <span class="role-tag">ผู้ตัดสินใจซื้อ</span>
+          </article>
+          <article class="target-card reveal">
+            <div class="target-icon">🏥</div>
+            <h3>Institutional Customer</h3>
+            <p><strong>องค์กรที่ดูแลผู้สูงอายุ</strong> และต้องการระบบกิจกรรมพร้อมข้อมูลภาพรวม</p>
+            <ul><li>ศูนย์ดูแลและชมรมผู้สูงอายุ</li><li>โรงพยาบาล คลินิก และหน่วยงานท้องถิ่น</li><li>บริษัทประกันหรือพันธมิตรโทรคมนาคม</li></ul>
+            <span class="role-tag">B2B / B2B2C</span>
+          </article>
+        </div>
+        <div class="insight-box reveal">
+          <div class="big-icon">💬</div>
+          <div class="insight-quote">“ผู้สูงอายุไม่ต้องการถูกตรวจ แต่ต้องการมีใครสักคนชวนทำสิ่งดี ๆ ทุกวัน”</div>
         </div>
       </div>
     </section>
@@ -498,6 +700,150 @@
       </div>
     </section>
 
+    <section class="section" id="market">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">Market Analysis</span>
+          <h2>ตลาดผู้สูงอายุขยายตัว<br>พร้อมความต้องการดูแลเชิงป้องกัน</h2>
+          <p>ประเทศไทยมีประชากรอายุ 60 ปีขึ้นไปคิดเป็น 20.8% ของประชากรทั้งหมดในปี 2567 ขณะที่ภาวะสมองเสื่อมเป็นความท้าทายระดับโลกที่ต้องเริ่มดูแลก่อนเกิดอาการชัดเจน</p>
+        </div>
+
+        <div class="market-hero">
+          <div class="market-main reveal">
+            <span class="pitch-label">🇹🇭 Thailand 2024</span>
+            <div class="big-number">13.7M</div>
+            <h3>ผู้สูงอายุโดยประมาณในประเทศไทย</h3>
+            <p>คำนวณจากประชากร 65.95 ล้านคน และสัดส่วนผู้มีอายุ 60 ปีขึ้นไป 20.8%</p>
+          </div>
+          <div class="market-facts">
+            <div class="market-fact reveal"><b>20.8%</b><p>สัดส่วนประชากรไทยอายุ 60 ปีขึ้นไปในปี 2567</p></div>
+            <div class="market-fact reveal"><b>57M</b><p>ผู้มีภาวะสมองเสื่อมทั่วโลกในปี 2021 ตาม WHO</p></div>
+            <div class="market-fact reveal"><b>≈10M</b><p>ผู้ป่วยรายใหม่ทั่วโลกต่อปีตาม WHO</p></div>
+            <div class="market-fact reveal"><b>5–10 นาที</b><p>ช่วงเวลากิจกรรมรายวันที่ PlearnJit ออกแบบให้ทำได้จริง</p></div>
+          </div>
+        </div>
+
+        <div class="market-size-grid">
+          <article class="market-size-card tam reveal">
+            <span class="market-code">TAM</span><strong>≈ 16.3 พันล้านบาท/ปี</strong>
+            <p>ผู้สูงอายุไทยประมาณ 13.7 ล้านคน ที่ราคา 99 บาทต่อเดือน</p>
+            <div class="formula">13.7M × 99 บาท × 12 เดือน</div>
+          </article>
+          <article class="market-size-card sam reveal">
+            <span class="market-code">SAM</span><strong>≈ 3.26 พันล้านบาท/ปี</strong>
+            <p>สมมติกลุ่มที่เข้าถึงดิจิทัลและมีโอกาสใช้งาน 20% ของ TAM</p>
+            <div class="formula">2.74M × 99 บาท × 12 เดือน</div>
+          </article>
+          <article class="market-size-card som reveal">
+            <span class="market-code">SOM · 3 ปี</span><strong>≈ 35.64 ล้านบาท ARR</strong>
+            <p>เป้าหมายสมาชิกแบบชำระเงิน 30,000 บัญชี</p>
+            <div class="formula">30,000 × 99 บาท × 12 เดือน</div>
+          </article>
+        </div>
+        <p class="assumption-note reveal">* TAM / SAM / SOM เป็นสมมติฐานเชิงธุรกิจสำหรับการนำเสนอ ต้องทดสอบความเต็มใจจ่ายและอัตราการเข้าถึงจริงในช่วง Pilot</p>
+
+        <div class="section-head reveal" style="margin-top:72px">
+          <span class="kicker">Competitor Landscape</span>
+          <h2>ตลาดมีหลายทางเลือก<br>แต่ยังมีช่องว่างด้าน Family-powered Daily Care</h2>
+          <p>เปรียบเทียบจากจุดเน้นที่สื่อสารบนเว็บไซต์สาธารณะของแต่ละบริการ ฟีเจอร์อาจเปลี่ยนแปลงได้</p>
+        </div>
+        <div class="table-shell reveal">
+          <table class="comparison-table">
+            <thead><tr><th>Solution / จุดเน้น</th><th>ฝึกสมอง</th><th>สุขภาพประจำวัน</th><th>อารมณ์</th><th>ครอบครัว</th><th>ภาษาไทย + Senior UX</th></tr></thead>
+            <tbody>
+              <tr><td>Lumosity · เกมฝึกทักษะความคิด</td><td class="status-strong">เด่น</td><td class="status-low">ไม่ใช่จุดหลัก</td><td class="status-low">ไม่ใช่จุดหลัก</td><td class="status-low">ไม่ใช่จุดหลัก</td><td class="status-low">ไม่ใช่จุดหลัก</td></tr>
+              <tr><td>MindMate · สุขภาพสมองและร่างกาย</td><td class="status-strong">เด่น</td><td class="status-strong">เด่น</td><td class="status-part">มีบางส่วน</td><td class="status-low">ไม่ใช่จุดหลัก</td><td class="status-low">ไม่ใช่จุดหลัก</td></tr>
+              <tr><td>YoungHappy · ชุมชนและกิจกรรมผู้สูงวัยไทย</td><td class="status-part">มีบางส่วน</td><td class="status-part">มีบางส่วน</td><td class="status-strong">เด่นด้านสังคม</td><td class="status-part">มีบางส่วน</td><td class="status-strong">เด่น</td></tr>
+              <tr><td>Telemedicine · ปรึกษาแพทย์ทางไกล</td><td class="status-low">ไม่ใช่จุดหลัก</td><td class="status-part">ด้านการแพทย์</td><td class="status-low">ไม่ใช่จุดหลัก</td><td class="status-low">ไม่ใช่จุดหลัก</td><td class="status-strong">มีบริการไทย</td></tr>
+              <tr class="ours"><td>PlearnJit · Daily Preventive Companion</td><td class="status-strong">✓</td><td class="status-strong">✓</td><td class="status-strong">✓</td><td class="status-strong">✓</td><td class="status-strong">✓</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="source-box reveal">
+          <strong>แหล่งข้อมูลตลาดและคู่แข่ง</strong>
+          <div class="source-links">
+            <a href="https://www.nso.go.th/public/e-book/Statistical-Yearbook/SYB-2025/55/" target="_blank" rel="noopener">สำนักงานสถิติแห่งชาติ</a>
+            <a href="https://www.who.int/news-room/fact-sheets/detail/dementia" target="_blank" rel="noopener">WHO: Dementia</a>
+            <a href="https://www.lumosity.com/en/brain-training/" target="_blank" rel="noopener">Lumosity</a>
+            <a href="https://www.mindmate-app.com/" target="_blank" rel="noopener">MindMate</a>
+            <a href="https://younghappy.com/" target="_blank" rel="noopener">YoungHappy</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact" id="business">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">Business Model & Pricing</span>
+          <h2>Freemium สำหรับครอบครัว<br>และ Subscription สำหรับองค์กร</h2>
+          <p>เริ่มต้นใช้งานฟรี ลดอุปสรรคในการทดลอง และสร้างรายได้จากฟีเจอร์เฉพาะบุคคล รายงานครอบครัว และระบบบริหารหลายบัญชี</p>
+        </div>
+        <div class="pricing-grid">
+          <article class="price-card reveal">
+            <h3>Free</h3><p>เริ่มดูแลตัวเองได้ทันที</p>
+            <div class="price">0 บาท</div>
+            <ul><li>เช็กอารมณ์ประจำวัน</li><li>กิจกรรมพื้นฐานวันละ 1 กิจกรรม</li><li>บันทึกสุขภาพพื้นฐาน</li><li>โทรหาครอบครัว</li></ul>
+            <div class="plan-note">เป้าหมาย: สร้างความคุ้นเคยและลดความกลัวเทคโนโลยี</div>
+          </article>
+          <article class="price-card featured reveal">
+            <span class="price-badge">แผนหลัก</span>
+            <h3>Family Plus</h3><p>สำหรับผู้สูงอายุและลูกหลาน</p>
+            <div class="price">99 บาท <small>/ เดือน</small></div>
+            <ul><li>กิจกรรมไม่จำกัด</li><li>สร้างเกมจากรูปและเสียงครอบครัว</li><li>รายงานแนวโน้มรายสัปดาห์</li><li>Family Dashboard และผู้ดูแลหลายคน</li><li>ประวัติย้อนหลัง</li></ul>
+            <div class="plan-note">ทางเลือกรายปี 990 บาท เพื่อเพิ่ม Retention</div>
+          </article>
+          <article class="price-card reveal">
+            <h3>Organization</h3><p>สำหรับศูนย์ดูแล โรงพยาบาล และชุมชน</p>
+            <div class="price">69 บาท <small>/ ผู้ใช้ / เดือน</small></div>
+            <ul><li>Dashboard รวมหลายผู้ใช้งาน</li><li>จัดการสมาชิกและผู้ดูแล</li><li>รายงานการเข้าร่วมกิจกรรม</li><li>อบรมผู้ดูแลและ Onboarding</li><li>รองรับ White-label ในอนาคต</li></ul>
+            <div class="plan-note">ราคา Pilot สมมติขั้นต่ำ 50 ผู้ใช้งาน และอาจมีค่า Setup ตามขนาดองค์กร</div>
+          </article>
+        </div>
+        <div class="revenue-row reveal">
+          <span class="revenue-chip">Subscription</span><span class="revenue-chip">B2B Licensing</span><span class="revenue-chip">White-label</span><span class="revenue-chip">Family Bundle</span><span class="revenue-chip">Sponsored Wellness Program</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gtm">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">Go-to-Market Strategy</span>
+          <h2>เริ่มจากชุมชนจริง<br>พิสูจน์พฤติกรรมก่อนขยายตลาด</h2>
+          <p>ผู้สูงอายุเป็นผู้ใช้งาน แต่ลูกหลานและองค์กรจะเป็นผู้ช่วยติดตั้ง แนะนำ และตัดสินใจซื้อในช่วงแรก</p>
+        </div>
+        <div class="timeline">
+          <article class="phase-card reveal"><span class="phase-label">PHASE 1</span><h3>Validate</h3><div class="phase-time">เดือนที่ 1–3</div><ul><li>ทดลองกับผู้สูงอายุ 50–100 คน</li><li>ร่วมกับชมรม ศูนย์ดูแล หรือโรงพยาบาลชุมชน</li><li>วัด Onboarding, Weekly Use และความเต็มใจจ่าย</li></ul></article>
+          <article class="phase-card reveal"><span class="phase-label">PHASE 2</span><h3>Build Community</h3><div class="phase-time">เดือนที่ 4–8</div><ul><li>แคมเปญ “21 วัน เพลินใจ สมองดี”</li><li>ใช้ลูกหลานเป็นผู้ชวนเริ่มต้น</li><li>สร้าง Senior Ambassador และคอนเทนต์ผ่าน LINE / Facebook</li></ul></article>
+          <article class="phase-card reveal"><span class="phase-label">PHASE 3</span><h3>Scale</h3><div class="phase-time">เดือนที่ 9–18</div><ul><li>ขยายแบบ B2B2C ผ่านพันธมิตร</li><li>เสนอ Family Bundle และองค์กรดูแลผู้สูงอายุ</li><li>ต่อยอดแท็บเล็ต Smart Home และบริการสุขภาพดิจิทัล</li></ul></article>
+        </div>
+        <div class="acquisition-callout reveal">ผู้ใช้คือผู้สูงอายุ แต่ผู้ช่วยเริ่มต้นและผู้ตัดสินใจจ่ายในช่วงแรกคือลูกหลาน</div>
+      </div>
+    </section>
+
+    <section class="section compact" id="true-opportunity">
+      <div class="container">
+        <div class="true-shell reveal">
+          <span class="kicker">Opportunity for True</span>
+          <h2>PlearnJit สามารถเป็น Daily Preventive Layer<br>ในระบบ Smart Healthcare ของ True</h2>
+          <p>True มีโครงสร้างพื้นฐาน 5G, IoT และบริการ Telemedicine อยู่แล้ว ข้อเสนอนี้คือการเพิ่มประสบการณ์ดูแลเชิงป้องกันที่ผู้สูงอายุใช้ได้ทุกวัน ก่อนเข้าสู่บริการทางการแพทย์เมื่อจำเป็น</p>
+          <div class="true-grid">
+            <article class="true-card"><span>👨‍👩‍👧</span><h3>True Family Health Bundle</h3><p>รวม PlearnJit เป็นบริการเสริมในแพ็กเกจมือถือหรืออินเทอร์เน็ตครอบครัว</p></article>
+            <article class="true-card"><span>📡</span><h3>Distribution & Connectivity</h3><p>ใช้เครือข่าย ช่องทางดิจิทัล และพันธมิตรของ True เพื่อเข้าถึงครอบครัวและองค์กร</p></article>
+            <article class="true-card"><span>🏥</span><h3>Smart Healthcare Ecosystem</h3><p>วางเส้นทางส่งต่อจากกิจกรรมรายวันสู่ Telemedicine เมื่อผู้ใช้ต้องการคำปรึกษา</p></article>
+            <article class="true-card"><span>🔁</span><h3>Customer Retention</h3><p>สร้างบริการที่เชื่อมลูกค้าหลายวัยในครอบครัวเดียวกันและมีการใช้งานต่อเนื่อง</p></article>
+            <article class="true-card"><span>💳</span><h3>Recurring Revenue</h3><p>ต่อยอด Subscription, Family Bundle และ B2B Healthcare Package</p></article>
+            <article class="true-card"><span>🌏</span><h3>ESG & Digital Inclusion</h3><p>ช่วยลดช่องว่างดิจิทัลและทำให้ผู้สูงอายุใช้เทคโนโลยีได้อย่างมั่นใจ</p></article>
+          </div>
+          <div class="source-box" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14)">
+            <strong>แหล่งอ้างอิงเกี่ยวกับ Smart Healthcare ของ True</strong>
+            <div class="source-links"><a href="https://truebusiness.truecorp.co.th/th/solution/truesolutions/iot-digital/smarthealthcare" target="_blank" rel="noopener">True Business: Smart Healthcare</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section compact" id="outcomes">
       <div class="container">
         <div class="section-head reveal">
@@ -511,22 +857,35 @@
           <div class="outcome reveal"><b>👨‍👩‍👧</b><p>ครอบครัวดูแลได้ง่ายขึ้น</p></div>
           <div class="outcome reveal"><b>📈</b><p>เห็นความเปลี่ยนแปลงได้เร็วขึ้น</p></div>
         </div>
+        <div class="section-head reveal" style="margin-top:64px;margin-bottom:28px">
+          <span class="kicker">Pilot KPI</span>
+          <h2>ตัวชี้วัดความสำเร็จที่ตรวจสอบได้</h2>
+          <p>เริ่มวัดจากพฤติกรรมการใช้งานและคุณภาพประสบการณ์ โดยไม่กล่าวอ้างผลการรักษาหรือวินิจฉัยโรค</p>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi-card reveal"><strong>≥70%</strong><small>ทำ Onboarding สำเร็จ</small></div>
+          <div class="kpi-card reveal"><strong>≥3 วัน</strong><small>ใช้งานเฉลี่ยต่อสัปดาห์</small></div>
+          <div class="kpi-card reveal"><strong>≥60%</strong><small>ทำกิจกรรมประจำวันที่แนะนำ</small></div>
+          <div class="kpi-card reveal"><strong>≥40%</strong><small>ยังใช้งานต่อหลัง 8 สัปดาห์</small></div>
+          <div class="kpi-card reveal"><strong>≥80%</strong><small>คะแนนความพึงพอใจ</small></div>
+        </div>
       </div>
     </section>
 
-    <section class="section compact">
+    <section class="section" id="team">
       <div class="container">
         <div class="section-head reveal">
-          <span class="kicker">กลุ่มเป้าหมาย</span>
-          <h2>ออกแบบเพื่อผู้สูงวัย และทุกคนที่อยู่รอบตัว</h2>
+          <span class="kicker">Team Member & Key Strengths</span>
+          <h2>ทีมข้ามศาสตร์ที่เข้าใจทั้งผู้สูงวัย<br>เทคโนโลยี สุขภาพ และธุรกิจ</h2>
+          <p>โครงสร้างทีมสำหรับนำเสนอ สามารถแทนที่ชื่อและรายละเอียดด้วยข้อมูลสมาชิกจริงได้ทันที</p>
         </div>
-        <div class="audience-wrap reveal">
-          <span class="audience-chip">👵 ผู้สูงอายุที่ดูแลตัวเองได้</span>
-          <span class="audience-chip">🧠 ผู้ที่เริ่มมีความเสี่ยงด้านความจำ</span>
-          <span class="audience-chip">👨‍👩‍👧 ลูกหลานและผู้ดูแล</span>
-          <span class="audience-chip">🏡 ศูนย์ดูแลและชมรมผู้สูงอายุ</span>
-          <span class="audience-chip">🏥 โรงพยาบาลและบุคลากรสุขภาพ</span>
+        <div class="team-grid">
+          <article class="team-card reveal"><div class="team-avatar">🎨</div><h3>[ชื่อสมาชิก 1]</h3><div class="team-role">Product & UX Lead</div><p>ออกแบบ User Journey, Prototype และประสบการณ์ใช้งานที่เหมาะกับผู้สูงอายุ</p></article>
+          <article class="team-card reveal"><div class="team-avatar">💻</div><h3>[ชื่อสมาชิก 2]</h3><div class="team-role">Technology Lead</div><p>พัฒนา Web Application ระบบฐานข้อมูล เสียงภาษาไทย และ Family Dashboard</p></article>
+          <article class="team-card reveal"><div class="team-avatar">🧠</div><h3>[ชื่อสมาชิก 3]</h3><div class="team-role">Health & Research Lead</div><p>ศึกษาปัจจัย Healthy Aging ออกแบบกิจกรรมที่ปลอดภัย และวางแผน Pilot</p></article>
+          <article class="team-card reveal"><div class="team-avatar">🤝</div><h3>[ชื่อสมาชิก 4]</h3><div class="team-role">Business & Partnership Lead</div><p>วิเคราะห์ตลาด โมเดลรายได้ พันธมิตร และแผนขยายแบบ B2B2C</p></article>
         </div>
+        <p class="editable-note reveal">แก้ไขข้อความ [ชื่อสมาชิก] และจุดแข็งให้ตรงกับทีมจริงก่อนนำเสนอ</p>
       </div>
     </section>
 
@@ -534,8 +893,8 @@
       <div class="container">
         <div class="cta-box reveal">
           <div>
-            <h2>เพราะการดูแลสมอง<br>ควรเริ่มตั้งแต่วันนี้อย่างสบายใจ</h2>
-            <p>PlearnJit – เพลินจิต ช่วยให้ผู้สูงวัยดูแลตัวเองได้อย่างมั่นใจ และช่วยให้ครอบครัวใกล้กันมากขึ้นในทุกวัน</p>
+            <h2>ร่วมสร้างวันที่ผู้สูงวัย<br>ดูแลตัวเองได้อย่างสบายใจ</h2>
+            <p>PlearnJit ต้องการการสนับสนุนเพื่อพัฒนา MVP ทดลองกับผู้ใช้จริง และเชื่อมต่อพันธมิตรด้านเทคโนโลยี สุขภาพ และชุมชนผู้สูงอายุ</p>
           </div>
           <a class="btn" href="#top">กลับไปดูต้นแบบ ↑</a>
         </div>
@@ -546,7 +905,7 @@
   <footer>
     <div class="container footer-inner">
       <div class="brand"><span class="brand-mark" aria-hidden="true">🌼</span><span class="brand-name">PlearnJit <small>สนุกทุกวัน อารมณ์ดี สมองดี</small></span></div>
-      <div>ต้นแบบเว็บไซต์แนะนำโครงการ Healthy Longevity Tech</div>
+      <div>Project Website & Pitch Information · Healthy Longevity Tech</div>
     </div>
   </footer>
 
